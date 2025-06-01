@@ -4,15 +4,14 @@ using UnityEngine;
 
 public class Hero : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private void OnMouseDown()
     {
-        
+        GameManager.Instance.SelectHero(this);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void MoveTo(Vector3 targetPos)
     {
+        transform.position = targetPos;
         
     }
 }
