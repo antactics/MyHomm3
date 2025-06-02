@@ -21,13 +21,24 @@ public class GameManager : MonoBehaviour
         if (Input.GetMouseButton(0)) // 좌클릭을 하면
         {
             Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition); //화면의 마우스클릭위치를 벡터3로 받아옴
-            Vector3Int cellPos = tilemap.WorldToCell(mouseWorldPos); //마우스클릭위치값을 cell위치로 받아옴
-            Vector3 cellCenterWorld = tilemap.GetCellCenterWorld(cellPos); //타일 셀의 중앙위치
-            
+            Vector2 mouseWorld2D = new Vector2(mouseWorldPos.x, mouseWorldPos.y); // 2D월드에서 좌표값을 받을 변수
+
+            RaycastHit2D hit = Physics2D.Raycast(mouseWorld2D, Vector2.zero);
+
+            if(hit.collider != null && hit.collider.GetComponent<Hero>() != null)
+            {
+                return; // Hero스크립트의 OnMouseDown에서 처리하고 여기에선 무시함
+            }
+
             if(selectedHero != null)
             {
+                Vector3Int cellpos = tilemap.WorldToCell(mouseWorldPos);
+                Vector3 cellCenterWorld = tilemap.GetCellCenterWorld(cellpos);
+
+                //스프라이트를 셀 중앙으로 맞추기 위해 보정
+                cellCenterWorld.y -= 0.5f;
+
                 selectedHero.MoveTo(cellCenterWorld);
-                Debug.Log($"영웅이 {cellCenterWorld}로 이동함");
             }
         }
     }
