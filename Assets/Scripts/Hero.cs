@@ -4,47 +4,40 @@ using UnityEngine;
 
 public class Hero : MonoBehaviour
 {
-    private bool isMoving = false;
+    public float moveSpeed = 3f;
+
+    private Coroutine moveCoroutine;
 
     private void OnMouseDown()
     {
-        if(!isMoving)
-        {
         GameManager.Instance.SelectHero(this);
-        }
     }
 
-    public void MoveTo(Vector3 targetPos)
+    public void MoveAlongPath(List<Vector3> path)
     {
-        if (!isMoving)
-        {
-            StartCoroutine(MoveToPosition(targetPos));
-        }
+        if(moveCoroutine != null)
+        StopCoroutine(moveCoroutine);
+
+        moveCoroutine = StartCoroutine(MoveStepByStep(path));
     }
 
-    private IEnumerator MoveToPosition(Vector3 targetPos)
+    private IEnumerator MoveStepByStep(List<Vector3> path)
     {
-        isMoving = true;
-
-        Vector3 startPos = transform.position;
-        float distance = Vector3.Distance(startPos, targetPos);
-        float speed = 10f;
-
-        float travelTime = distance / speed;
-        float elapsed = 0f;
-
-        while (elapsed < travelTime)
+        foreach(Vector3 step in path)
         {
-            transform.position = Vector3.Lerp(startPos, targetPos, elapsed / travelTime);
-            elapsed += Time.deltaTime;
-            yield return null;
+            Vector3 target = step + new Vector3(0, -0.5f, 0); 
+
+            while(Vector3.Distance(transform.position, target) > 0.01f)
+            {
+                
+                transform.position = Vector3.MoveTowards(transform.position, target, moveSpeed * Time.deltaTime);
+                yield return null;
+                Debug.Log("영웅이 이동함" + target);
+                // 마우스 클릭시 이동 중단
+                if (Input.GetMouseButtonDown(0))
+                    yield break;
+            }
         }
-
-        transform.position = targetPos;
-
-        isMoving = false;
-        Debug.Log("영웅이 이동함" + targetPos);
-
+        moveCoroutine = null;
     }
-
 }
