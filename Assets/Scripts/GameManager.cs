@@ -2,9 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using UnityEngine.UI;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
+    
+    public int gold = 0;
+    public TextMeshProUGUI goldText; 
+
+
     public static GameManager Instance { get; private set; }
 
     public Hero selectedHero;
@@ -38,7 +45,17 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    
+    public void AddGold(int amount)
+    {
+        gold += amount;
+        UpdateGoldUI();
+    }
 
-    
+    void UpdateGoldUI()
+    {
+        if (goldText != null)
+            goldText.text = gold.ToString();
+    }
+
+
 }

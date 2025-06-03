@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -19,25 +20,49 @@ public class Hero : MonoBehaviour
         StopCoroutine(moveCoroutine);
 
         moveCoroutine = StartCoroutine(MoveStepByStep(path));
+        
     }
 
     private IEnumerator MoveStepByStep(List<Vector3> path)
     {
-        foreach(Vector3 step in path)
+        for (int i = 0; i<path.Count; i++)
         {
+            Vector3 step = path[i];
             Vector3 target = step + new Vector3(0, -0.5f, 0); 
 
             while(Vector3.Distance(transform.position, target) > 0.01f)
             {
-                
                 transform.position = Vector3.MoveTowards(transform.position, target, moveSpeed * Time.deltaTime);
                 yield return null;
-                Debug.Log("영웅이 이동함" + target);
+
                 // 마우스 클릭시 이동 중단
                 if (Input.GetMouseButtonDown(0))
                     yield break;
             }
+
+            if (i == path.Count - 1)
+            {
+                Vector3Int tilePos = GameManager.Instance.tilemap.WorldToCell(step);
+                TryInteract(tilePos);
+            }
         }
+
         moveCoroutine = null;
     }
+
+    public void TryInteract(Vector3Int tilePosition)
+    {
+        Vector3 worldPos = GameManager.Instance.tilemap.GetCellCenterWorld(tilePosition);
+        Collider2D[] hits = Physics2D.OverlapCircleAll(worldPos, 0.1f);
+        foreach(var hit in hits)
+        {
+            IInteractable interactable = hit.GetComponent<IInteractable>();
+            if(interactable != null)
+            {
+                interactable.Interact(this);
+            }
+        }
+    }
+
+    
 }
