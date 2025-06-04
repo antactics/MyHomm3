@@ -6,6 +6,7 @@ using UnityEngine;
 public class Hero : MonoBehaviour
 {
     public bool isEnemy = false; //false아군 true적군
+    public bool isPlayerControlled = true; // 아군이면 true, 적이면 false
 
     public float moveSpeed = 3f;
 
@@ -16,6 +17,7 @@ public class Hero : MonoBehaviour
 
     private void OnMouseDown()
     {
+        if (!isPlayerControlled) return; // 적이면 무시
         GameManager.Instance.SelectHero(this);
     }
 
