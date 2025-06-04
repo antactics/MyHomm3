@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 13381173236588970}
-  - component: {fileID: 2423663628259483262}
   m_Layer: 0
   m_Name: Hero
   m_TagString: Untagged
@@ -33,19 +32,6 @@ Transform:
   - {fileID: 3702229501660865453}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2423663628259483262
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1296389597562660428}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8152e8d6d02b01d44b3062402724c001, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 3
 --- !u!1 &2257224648323074858
 GameObject:
   m_ObjectHideFlags: 0
@@ -57,8 +43,8 @@ GameObject:
   - component: {fileID: 3702229501660865453}
   - component: {fileID: 6237302438970940581}
   - component: {fileID: 3742071652140852556}
-  - component: {fileID: 6836640041962711688}
-  - component: {fileID: 8062354296694015031}
+  - component: {fileID: 787832723945814551}
+  - component: {fileID: 2679516467141800288}
   m_Layer: 0
   m_Name: Knight(Down)
   m_TagString: Untagged
@@ -75,7 +61,7 @@ Transform:
   m_GameObject: {fileID: 2257224648323074858}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -154,20 +140,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &6836640041962711688
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2257224648323074858}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8152e8d6d02b01d44b3062402724c001, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 3
---- !u!61 &8062354296694015031
+--- !u!61 &787832723945814551
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -199,7 +172,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.953123}
+  m_Offset: {x: 0, y: 0.44592732}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0}
@@ -210,5 +183,19 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.78125, y: 1.90625}
+  m_Size: {x: 0.78125, y: 0.8918587}
   m_EdgeRadius: 0
+--- !u!114 &2679516467141800288
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2257224648323074858}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8152e8d6d02b01d44b3062402724c001, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 3
+  isSelected: 0

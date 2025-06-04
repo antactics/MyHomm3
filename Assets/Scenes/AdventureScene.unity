@@ -419,8 +419,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gold: 0
   goldText: {fileID: 2141806834}
-  selectedHero: {fileID: 0}
   tilemap: {fileID: 1846820273}
+  selectedHero: {fileID: 0}
   pathfinder: {fileID: 1586614203}
 --- !u!4 &1586614202
 Transform:
@@ -450,6 +450,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tilemap: {fileID: 1846820273}
+  obstacleMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &1621129262
 GameObject:
   m_ObjectHideFlags: 0
@@ -459,6 +462,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1621129263}
+  - component: {fileID: 1621129264}
   m_Layer: 0
   m_Name: EnemyHero
   m_TagString: Untagged
@@ -482,6 +486,21 @@ Transform:
   - {fileID: 1917582881}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1621129264
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1621129262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8152e8d6d02b01d44b3062402724c001, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isEnemy: 1
+  moveSpeed: 3
+  isSelected: 0
 --- !u!1 &1846820270
 GameObject:
   m_ObjectHideFlags: 0
@@ -2785,7 +2804,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 13381173236588970, guid: 43971c979867db641be182f13ef48dcc, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 13381173236588970, guid: 43971c979867db641be182f13ef48dcc, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2817,6 +2836,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 13381173236588970, guid: 43971c979867db641be182f13ef48dcc, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 787832723945814551, guid: 43971c979867db641be182f13ef48dcc, type: 3}
+      propertyPath: m_IsTrigger
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1296389597562660428, guid: 43971c979867db641be182f13ef48dcc, type: 3}

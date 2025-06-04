@@ -8,6 +8,11 @@ public class GoldObject : MonoBehaviour, IInteractable
 
     public bool IsBlocking() => true;
 
+    public InteractionType GetInteractionType()
+    {
+        return InteractionType.Adjacent; //°ñµå´Â ÀÎÁ¢½Ã¿¡¸¸ È¹µæ°¡´É
+    }
+
     public void Interact(Hero hero)
     {
         GameManager.Instance.AddGold(goldAmout);
